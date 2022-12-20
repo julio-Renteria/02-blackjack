@@ -1,0 +1,7 @@
+(()=>{"use strict";let e=[],t=["C","D","H","S"],a=["A","J","Q","K"],r=[],l=document.querySelector("#btnNew"),n=document.querySelector("#btnStop"),d=document.querySelector("#btnPedir"),s=document.querySelectorAll("small"),o=document.querySelectorAll(".divCartas"),i=(t=2)=>{e=c(),r=[];for(let a=0;a<t;a++)r.push(0);s.forEach(e=>e.innerText=0),o.forEach(e=>e.innerHTML=""),d.disabled=!1,n.disabled=!1},c=()=>{e=[];for(let r=2;r<=10;r++)for(let l of t)e.push(r+l);//! crear especiales
+for(let n of t)for(let d of a)e.push(d+n);return _.shuffle(e)},u=()=>{if(0===e.length)throw"No hay cartas en en deck";return e.pop()},$=e=>{let t=e.substring(0,e.length-1);return isNaN(t)?"A"===t?11:10:1*t},f=(e,t)=>(r[t]+=$(e),s[t].innerText=r[t],r[t]),h=(e,t)=>{let a=document.createElement("img");a.src=`assets/cartas/${e}.png`,a.classList.add("carta"),o[t].append(a)},b=()=>{let[e,t]=r;setTimeout(()=>{t===e?alert("Nadie Gana"):e>21?alert(" Computadora Gana"):t>21?alert(" Jugardor  Gana"):alert("Computadora Gana")},30)},p=e=>{let t=0;do{let a=u();t=f(a,r.length-1),//! crear carta 
+h(a,r.length-1)}while(t<e&&e<=21);
+b()};d.addEventListener("click",function(){let e=u(),t=f(e,0);
+h(e,0),t>21?(console.warn("Perdistes el juego"),d.disabled=!0,n.disabled=!0,p(t)):21===t&&(console.warn("Ganastes el  juego con 21"),d.disabled=!0,n.disabled=!0,p(t))}),//! Boton detener 
+n.addEventListener("click",()=>{n.disabled=!0,d.disabled=!0,p(r[0])}),
+l.addEventListener("click",()=>{i()})})();
